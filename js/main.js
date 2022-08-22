@@ -10,13 +10,14 @@ const answers = {
 const btnNext = document.querySelectorAll('[data-nav="next"]');
 btnNext.forEach(function(button){
     button.addEventListener("click", function(){
-        const thisCard = this.closest("[data-card]");
-
+        let thisCard = this.closest("[data-card]");
+        let thisCardNumber = parseInt(thisCard.dataset.card);
+            navigate("next", thisCard);
         if (thisCard.dataset.validate == "novalidate" ) {
-            console.log("Novalidate!");
-        }
-
-        navigate("next", thisCard);
+            navigate("next", thisCard);
+        } else
+            saveAnswer(thisCardNumber, gatherCardData(thisCardNumber));
+        
     })
 })
 
@@ -103,3 +104,8 @@ function gatherCardData(number){
 
     return data;    
 }
+
+// Функция записи ответов в объект
+function saveAnswer(number, data){
+    answers[number] = data
+} 
