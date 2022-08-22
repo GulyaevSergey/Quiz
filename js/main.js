@@ -69,6 +69,30 @@ function gatherCardData(number){
             })
         }
     })
+
+    // Находим все заполненные значения из чекбоксов
+    let ckeckBoxValues = currentCard.querySelectorAll('[type="checkbox"]');
+    ckeckBoxValues.forEach(function(item){
+        console.dir("item", item);
+        if (item.checked){
+            result.push({
+                name: item.name,
+                value: item.value
+            })
+        }
+    })
+
+    // Находим все заполненные значения из инпутов
+    let inputValues = currentCard.querySelectorAll('[type="text"], [type="email"], [type="number"]');
+    inputValues.forEach(function(item){
+        itemValue = item.value;
+        if (itemValue.trim != ""){
+            result.push({
+                name: item.name,
+                value: item.value
+            });
+        }   
+    })
     
     console.log(result);
 
