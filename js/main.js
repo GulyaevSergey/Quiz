@@ -1,8 +1,20 @@
+// Объект с сохраненными ответами
+const answers = {
+    2: null,
+    3: null,
+    4: null,
+    5: null
+}
+
 // Движение вперед
 const btnNext = document.querySelectorAll('[data-nav="next"]');
 btnNext.forEach(function(button){
     button.addEventListener("click", function(){
         const thisCard = this.closest("[data-card]");
+
+        if (thisCard.dataset.validate == "novalidate" ) {
+            console.log("Novalidate!");
+        }
 
         navigate("next", thisCard);
     })
@@ -31,4 +43,39 @@ function navigate(direction, thisCard) {
 
     thisCard.classList.add("hidden");
     document.querySelector(`[data-card="${nextCard}"]`).classList.remove("hidden");
+}
+
+// Функция сбора заполненных данных
+function gatherCardData(number){
+
+    let question;
+    let result = [];
+
+    // Находим карточку по номеру и дата-атрибуту
+    const currentCard = document.querySelector(`[data-card="${number}"]`);
+
+    // Находим главный вопрос карточки
+    question = currentCard.querySelector("[data-question]").innerText;
+
+    // Находим все заполненные значения из радиокнопок
+    const radioValues = currentCard.querySelectorAll('[type="radio"]');
+
+    radioValues.forEach(function(item){
+
+        if (item.checked){
+            result.push({
+                name: item.name,
+                value: item.value
+            })
+        }
+    })
+    
+    console.log(result);
+
+    let data = {
+        question: question,
+        answer: result
+    }
+
+    return data;    
 }

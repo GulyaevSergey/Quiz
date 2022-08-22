@@ -21,7 +21,7 @@
 
     <body style="flex-wrap: wrap;">
         <!-- Card 01 -->
-        <div class="plate" data-card="1">
+        <div class="plate" data-card="1" data-validate="novalidate">
             <div class="cover-content-wrapper">
                 <div class="cover-content">
                     <img
@@ -58,14 +58,15 @@
 
             <!-- Content ... -->
             <div class="plate-content">
-                <h2 class="title-main">Что означает сокращение HTML?</h2>
+                <h2 data-question class="title-main">Что означает сокращение HTML?</h2>
                 <div class="radio-group">
                     <!-- radio-block -->
                     <label class="radio-block">
                         <input
                             type="radio"
-                            name="radio-group"
+                            name="what-html-means"
                             class="radio-block__real"
+                            value="Hero Tutorial Multi Level"
                         />
                         <div class="radio-block__fake"></div>
                         <div class="radio-block__text">
@@ -77,8 +78,9 @@
                     <label class="radio-block radio-block--active">
                         <input
                             type="radio"
-                            name="radio-group"
+                            name="what-html-means"
                             class="radio-block__real"
+                            value="Hyper Text Markup Language"
                         />
                         <div class="radio-block__fake"></div>
                         <div class="radio-block__text">
@@ -90,8 +92,9 @@
                     <label class="radio-block">
                         <input
                             type="radio"
-                            name="radio-group"
+                            name="what-html-means"
                             class="radio-block__real"
+                            value="High Task Mirage Language"
                         />
                         <div class="radio-block__fake"></div>
                         <div class="radio-block__text">
@@ -103,8 +106,9 @@
                     <label class="radio-block">
                         <input
                             type="radio"
-                            name="radio-group"
+                            name="what-html-means"
                             class="radio-block__real"
+                            value="HTML не имеет расшифровки. Это военная разработка."
                         />
                         <div class="radio-block__fake"></div>
                         <div class="radio-block__text">
@@ -156,7 +160,7 @@
 
             <!-- Content ... -->
             <div class="plate-content">
-                <h2 class="title-main">Что означает сокращение HTML?</h2>
+                <h2 data-question class="title-main">Что означает сокращение HTML?</h2>
                 <div class="checkbox-group">
                     <!-- checkbox-block -->
                     <label class="checkbox-block">
@@ -254,7 +258,7 @@
 
             <!-- Content ... -->
             <div class="plate-content">
-                <h2 class="title-main">На HTML можно создавать:</h2>
+                <h2 data-question class="title-main">На HTML можно создавать:</h2>
 
                 <div class="cards-group">
                     <!-- card-block -->
@@ -371,7 +375,7 @@
                         src="img/icons/clapping.svg"
                         alt="Отлично! Последний шаг!"
                     />
-                    <div class="title">Отлично! Последний шаг!</div>
+                    <div data-question class="title">Отлично! Последний шаг!</div>
 
                     <div class="form-group">
                         <label class="label" for="email">Введите Email:</label>
