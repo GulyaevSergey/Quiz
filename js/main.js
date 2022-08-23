@@ -12,12 +12,20 @@ btnNext.forEach(function(button){
     button.addEventListener("click", function(){
         let thisCard = this.closest("[data-card]");
         let thisCardNumber = parseInt(thisCard.dataset.card);
-            navigate("next", thisCard);
+            
         if (thisCard.dataset.validate == "novalidate" ) {
             navigate("next", thisCard);
         } else
+
+            // При движении вперед сохраняем данные в объект
             saveAnswer(thisCardNumber, gatherCardData(thisCardNumber));
-        
+
+            // Валидация на заполненность
+            if (isFilled(thisCardNumber)){
+                navigate("next", thisCard);
+            } else {
+                alert("Сделайте ответ, прежде чем переходить далее");
+            }     
     })
 })
 
@@ -74,7 +82,6 @@ function gatherCardData(number){
     // Находим все заполненные значения из чекбоксов
     let ckeckBoxValues = currentCard.querySelectorAll('[type="checkbox"]');
     ckeckBoxValues.forEach(function(item){
-        console.dir("item", item);
         if (item.checked){
             result.push({
                 name: item.name,
@@ -109,3 +116,11 @@ function gatherCardData(number){
 function saveAnswer(number, data){
     answers[number] = data
 } 
+
+// Функция проверки на заполненность
+function isFilled(number){
+    if(answers [number].answer.length > 0){
+        return true;
+    } else
+        return false;
+}
