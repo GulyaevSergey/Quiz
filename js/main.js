@@ -156,3 +156,24 @@ function checkOnRequired(number){
         return false
     }
 }
+
+// Подсвечиваем рамку у радио кнопок
+
+document.querySelectorAll(".radio-group").forEach(function(item){
+    item.addEventListener("click", function(e){
+        // Проверяем где произошел клик, внутри lable или нет
+        let label = e.target.closest("label");
+        
+        if(label) {
+            // Отменяем активный класс у всех тегов label
+            label.closest(".radio-group").querySelectorAll("label").forEach(function(item){
+                item.classList.remove("radio-block--active");
+            })
+            // Добавляем активнй класс к label, на который был клик
+            label.classList.add("radio-block--active");
+        }
+    })
+})
+
+
+
