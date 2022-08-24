@@ -158,7 +158,6 @@ function checkOnRequired(number){
 }
 
 // Подсвечиваем рамку у радио кнопок
-
 document.querySelectorAll(".radio-group").forEach(function(item){
     item.addEventListener("click", function(e){
         // Проверяем где произошел клик, внутри lable или нет
@@ -175,5 +174,15 @@ document.querySelectorAll(".radio-group").forEach(function(item){
     })
 })
 
+// Подсвечиваем рамку для чекбоксов
+document.querySelectorAll('label.checkbox-block input[type="checkbox"]').forEach(function(item){
+    item.addEventListener("change", function(){
+        if (item.checked){
+            item.closest("label").classList.add("checkbox-block--active")
+        } else {
+            item.closest("label").classList.remove("checkbox-block--active")
+        }
+    })
+})
 
 
