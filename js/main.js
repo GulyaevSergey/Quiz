@@ -15,6 +15,7 @@ btnNext.forEach(function(button){
             
         if (thisCard.dataset.validate == "novalidate" ) {
             navigate("next", thisCard);
+            updateProgressBar("next", thisCardNumber);
         } else {
 
             // При движении вперед сохраняем данные в объект
@@ -23,6 +24,7 @@ btnNext.forEach(function(button){
             // Валидация на заполненность
             if (isFilled(thisCardNumber) && checkOnRequired(thisCardNumber)){
                 navigate("next", thisCard);
+                updateProgressBar("next", thisCardNumber);
             } else {
                 alert("Сделайте ответ, прежде чем переходить далее");
             }
@@ -35,8 +37,10 @@ const btnPrev = document.querySelectorAll('[data-nav="prev"]');
 btnPrev.forEach(function(button){
     button.addEventListener("click", function(){
         const thisCard = this.closest("[data-card]");
+        let thisCardNumber = parseInt(thisCard.dataset.card);
 
         navigate("prev", thisCard);
+        updateProgressBar("prev", thisCardNumber);
 
     })
 })
@@ -157,7 +161,7 @@ function checkOnRequired(number){
     }
 }
 
-// Подсвечиваем рамку у радио кнопок
+// Подсвечиваем рамку для радио кнопок
 document.querySelectorAll(".radio-group").forEach(function(item){
     item.addEventListener("click", function(e){
         // Проверяем где произошел клик, внутри lable или нет
@@ -184,5 +188,32 @@ document.querySelectorAll('label.checkbox-block input[type="checkbox"]').forEach
         }
     })
 })
+
+
+// Отображаем прогресс бар
+function updateProgressBar(direction, cardNumber){
+    // Расчитываем кол-во всех карточке
+    let cardsTotalNumber = document.querySelectorAll("[data-card]").length;
+
+    // Определяем текущую карточку
+    // Проверяем направление перемещения
+    if (direction == "next"){
+        cardNumber = cardNumber + 1;
+    } else if (direction == "prev"){
+        cardNumber = cardNumber - 1;
+    }
+
+    // Расчитываем % прохождения
+    let progress = ((cardNumber * 100) / cardsTotalNumber).toFixed();
+
+    // Находим и обновляем прогресс бар
+    let progressBar = document.querySelector(`[data-card="${cardNumber}"]`).querySelector(".progress")
+    if (progressBar){
+        // Обновляем число прогресс бара
+        progressBar.querySelector(".progress__label strong").innerText = `${progress}%`;
+        // Обновляем полоску прогресс бара
+        progressBar.querySelector(".progress__line-bar").style = `width: ${progress}%`;
+    }
+}   
 
 
